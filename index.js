@@ -59,101 +59,245 @@
 // addOne(); // 3
 
 
-// Functions
+// // Functions
 
-///function declaration
-const loaves = makebread(7); //the function works
+// ///function declaration
+// const loaves = makebread(7); //the function works
 
-function makebread(qty){
+// function makebread(qty){
 
-    return '🍞'.repeat(qty); 
-}
-//Function expression
+//     return '🍞'.repeat(qty); 
+// }
+// //Function expression
 
-const beers  = makeBeer(7); // makeBeer is not defined
+// const beers  = makeBeer(7); // makeBeer is not defined
 
-const makeBeer = function(qty){
-    return '🍺'.repeat(qty);
-} 
+// const makeBeer = function(qty){
+//     return '🍺'.repeat(qty);
+// } 
 
-//Parameters
-// Positional
-function makeBreakfast (main, side, drink) {
-    console.log(arguments)
-    return `Breakfast is ${main}, ${side}, and ${drink}.`;
-}
+// //Parameters
+// // Positional
+// function makeBreakfast (main, side, drink) {
+//     console.log(arguments)
+//     return `Breakfast is ${main}, ${side}, and ${drink}.`;
+// }
 
-// Named
-function makeLunch (opts) {
-    const { main, side, drink } = opts;
-    return `Lunch is ${main}, ${side}, and ${drink}.`;
-}
+// // Named
+// function makeLunch (opts) {
+//     const { main, side, drink } = opts;
+//     return `Lunch is ${main}, ${side}, and ${drink}.`;
+// }
 
-// Rest params
-function makeDinner (main, ...args) {
-    console.log(main, args)
-    return `Dinner includes ${main} and ${args.join('')}.`;
-}
-
-
-makeBreakfast('🥞', '🥓', '🥛');
-
-makeLunch({ main: '🥙', side: '🍟', drink: '🥤' });
-
-makeDinner('🍜', '🥘', '🍙', '🥠', '🍑');
-
-//Arrow Functions
-const makeBeer = function beerFun(qty) {
-    return '🍺'.repeat(qty);
-}
-
-const makeWine = (qty) => '🍷'.repeat(qty);
-
-//Pure functions
-let global = 0;
-const impure = () => {
-    global++;
-    return global ** 2;
-}
-
-const pure = (x) => x ** 2;
+// // Rest params
+// function makeDinner (main, ...args) {
+//     console.log(main, args)
+//     return `Dinner includes ${main} and ${args.join('')}.`;
+// }
 
 
-//HOF
-// Anonymous
-setTimeout( () => console.log('hello!'), 2000);
+// makeBreakfast('🥞', '🥓', '🥛');
 
-// Named
-const log = () => console.log('hello');
-setTimeout(log, 2000);
+// makeLunch({ main: '🥙', side: '🍟', drink: '🥤' });
+
+// makeDinner('🍜', '🥘', '🍙', '🥠', '🍑');
+
+// //Arrow Functions
+// const makeBeer = function beerFun(qty) {
+//     return '🍺'.repeat(qty);
+// }
+
+// const makeWine = (qty) => '🍷'.repeat(qty);
+
+// //Pure functions
+// let global = 0;
+// const impure = () => {
+//     global++;
+//     return global ** 2;
+// }
+
+// const pure = (x) => x ** 2;
 
 
-// Array Map
-[1,2,3,4].map(v => v ** 2);
+// //HOF
+// // Anonymous
+// setTimeout( () => console.log('hello!'), 2000);
+
+// // Named
+// const log = () => console.log('hello');
+// setTimeout(log, 2000);
 
 
-//Recursive
-const fs = require('fs');
-const { join } = require('path');
+// // Array Map
+// [1,2,3,4].map(v => v ** 2);
 
-const traverse = (dir) => {
 
-    const subfolders = fs.statSync(dir).isDirectory() 
-                       && fs.readdirSync(dir);
+// //Recursive
+// const fs = require('fs');
+// const { join } = require('path');
 
-    if (subfolders) {
+// const traverse = (dir) => {
 
-        console.log('👟👟👟 Traversing ', dir);
+//     const subfolders = fs.statSync(dir).isDirectory() 
+//                        && fs.readdirSync(dir);
 
-        subfolders.forEach(path => {
-            const fullPath = join(dir, path);
+//     if (subfolders) {
 
-            traverse( fullPath );
+//         console.log('👟👟👟 Traversing ', dir);
+
+//         subfolders.forEach(path => {
+//             const fullPath = join(dir, path);
+
+//             traverse( fullPath );
 
             
-        });
-    }
+//         });
+//     }
 
+// }
+
+// traverse( process.cwd() );
+
+
+//Objects
+
+// literal
+const dog = { }
+
+// constructor
+const cat = new Object();
+
+// static method
+const horse = Object.create({ })
+
+//Get properties
+get = object.property;
+object.property = set;
+
+let hello;
+let world;
+
+// Old way 💩
+const obj = {
+    hello: hello,
+    world: world
 }
 
-traverse( process.cwd() );
+// Modern way 👍
+const obj = {
+    hello,
+    world,
+}
+
+const x = 'howdy';
+
+const obj = {
+  [x]: 23
+}
+
+obj.howdy // 23
+//References
+const original = { }
+
+const x = original;
+const y = original;
+
+x === y; // true
+x === {}; // false
+
+x.hello = 'world';
+
+original.hello; // world
+y.hello; // world
+
+//combine objects
+const original = {
+    hello: 'world'
+ }
+
+const clone = Object.assign({ }, original);
+
+clone === original; // false
+
+original.hello = 'changed!';
+
+clone.hello; // world (did not change)
+
+//Spread sintax
+const clone = Object.assign({ }, original);
+
+const sugar = { ...original };
+
+const sugar = { ...original, hola: 'mundo' }; 
+
+
+//Objkect methods
+
+const obj = {
+    hello() {
+        console.log('yo')
+    }
+  }
+  
+  obj.hello();
+
+
+  //this
+  const obj = {
+    username: 'Jeff',
+    hello() {
+      console.log(`My name is ${this.username}`)
+    }
+  }
+  
+  obj.hello(); // My name is Jeff
+
+  const obj = {
+    username: 'Jeff',
+    hello: () => console.log(this.username)
+  }
+  
+  obj.hello(); // My name is undefined
+
+
+  //Chaining
+  const game = {
+    hitpoints: 100,
+    log() {
+      console.log(`👾 ${this.hitpoints}`);
+    },
+    takeDamage() {
+      this.hitpoints -= 10;
+      this.log();
+      return this; // Required for chaining
+    },
+    heal() {
+      this.hitpoints += 10;
+      this.log();
+      return this; // Required for chaining
+    },
+  }
+  
+  game.takeDamage().takeDamage().takeDamage().heal();
+  
+  👾 90
+  👾 80
+  👾 70
+  👾 80
+
+
+  //constructors
+  function Boat(name) {
+    this.name = name;
+    this.created = Date.now()
+  
+    this.horn = function () {
+      console.log(this.name)
+    }
+  }
+
+  const sally = new Boat('Sally');
+const molly = new Boat('Molly');
+
+sally.horn() // Sally
+  
