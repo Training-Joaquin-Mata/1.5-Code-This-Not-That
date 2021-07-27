@@ -159,145 +159,195 @@
 // traverse( process.cwd() );
 
 
-//Objects
+// //Objects
 
-// literal
-const dog = { }
+// // literal
+// const dog = { }
 
-// constructor
-const cat = new Object();
+// // constructor
+// const cat = new Object();
 
-// static method
-const horse = Object.create({ })
+// // static method
+// const horse = Object.create({ })
 
-//Get properties
-get = object.property;
-object.property = set;
+// //Get properties
+// get = object.property;
+// object.property = set;
 
-let hello;
-let world;
+// let hello;
+// let world;
 
-// Old way 💩
-const obj = {
-    hello: hello,
-    world: world
+// // Old way 💩
+// const obj = {
+//     hello: hello,
+//     world: world
+// }
+
+// // Modern way 👍
+// const obj = {
+//     hello,
+//     world,
+// }
+
+// const x = 'howdy';
+
+// const obj = {
+//   [x]: 23
+// }
+
+// obj.howdy // 23
+// //References
+// const original = { }
+
+// const x = original;
+// const y = original;
+
+// x === y; // true
+// x === {}; // false
+
+// x.hello = 'world';
+
+// original.hello; // world
+// y.hello; // world
+
+// //combine objects
+// const original = {
+//     hello: 'world'
+//  }
+
+// const clone = Object.assign({ }, original);
+
+// clone === original; // false
+
+// original.hello = 'changed!';
+
+// clone.hello; // world (did not change)
+
+// //Spread sintax
+// const clone = Object.assign({ }, original);
+
+// const sugar = { ...original };
+
+// const sugar = { ...original, hola: 'mundo' }; 
+
+
+// //Objkect methods
+
+// const obj = {
+//     hello() {
+//         console.log('yo')
+//     }
+//   }
+  
+//   obj.hello();
+
+
+//   //this
+//   const obj = {
+//     username: 'Jeff',
+//     hello() {
+//       console.log(`My name is ${this.username}`)
+//     }
+//   }
+  
+//   obj.hello(); // My name is Jeff
+
+//   const obj = {
+//     username: 'Jeff',
+//     hello: () => console.log(this.username)
+//   }
+  
+//   obj.hello(); // My name is undefined
+
+
+//   //Chaining
+//   const game = {
+//     hitpoints: 100,
+//     log() {
+//       console.log(`👾 ${this.hitpoints}`);
+//     },
+//     takeDamage() {
+//       this.hitpoints -= 10;
+//       this.log();
+//       return this; // Required for chaining
+//     },
+//     heal() {
+//       this.hitpoints += 10;
+//       this.log();
+//       return this; // Required for chaining
+//     },
+//   }
+  
+//   game.takeDamage().takeDamage().takeDamage().heal();
+  
+//   👾 90
+//   👾 80
+//   👾 70
+//   👾 80
+
+
+//   //constructors
+//   function Boat(name) {
+//     this.name = name;
+//     this.created = Date.now()
+  
+//     this.horn = function () {
+//       console.log(this.name)
+//     }
+//   }
+
+//   const sally = new Boat('Sally');
+// const molly = new Boat('Molly');
+
+// sally.horn() // Sally
+  
+// The console
+
+💩console.log(bar, foo);
+
+// Wait, which variable is named foo? 
+
+😐 console.log({ foo, bar });
+
+// Better, but it's kinda hard to read...
+
+😍console.table({ foo, bar });
+
+// Noice!
+
+
+console.group();
+
+console.log(1);
+console.log(2);
+console.log(3);
+
+console.groupEnd();
+
+
+// verbose 💩
+if (loggedIn) {
+    console.error('user is logged in assertion failed');
 }
 
-// Modern way 👍
-const obj = {
-    hello,
-    world,
-}
+// much better 😍 
+console.assert(loggedIn, 'user is logged in');
 
-const x = 'howdy';
+console.count();
+console.count();
+console.count();
 
-const obj = {
-  [x]: 23
-}
+console.countReset(); // reset to zero
 
-obj.howdy // 23
-//References
-const original = { }
+console.time();
 
-const x = original;
-const y = original;
+// do stuff
 
-x === y; // true
-x === {}; // false
-
-x.hello = 'world';
-
-original.hello; // world
-y.hello; // world
-
-//combine objects
-const original = {
-    hello: 'world'
- }
-
-const clone = Object.assign({ }, original);
-
-clone === original; // false
-
-original.hello = 'changed!';
-
-clone.hello; // world (did not change)
-
-//Spread sintax
-const clone = Object.assign({ }, original);
-
-const sugar = { ...original };
-
-const sugar = { ...original, hola: 'mundo' }; 
+console.timeLog('did stuff');
 
 
-//Objkect methods
+// do more stuff
 
-const obj = {
-    hello() {
-        console.log('yo')
-    }
-  }
-  
-  obj.hello();
+console.timeLog('did more stuff');
 
-
-  //this
-  const obj = {
-    username: 'Jeff',
-    hello() {
-      console.log(`My name is ${this.username}`)
-    }
-  }
-  
-  obj.hello(); // My name is Jeff
-
-  const obj = {
-    username: 'Jeff',
-    hello: () => console.log(this.username)
-  }
-  
-  obj.hello(); // My name is undefined
-
-
-  //Chaining
-  const game = {
-    hitpoints: 100,
-    log() {
-      console.log(`👾 ${this.hitpoints}`);
-    },
-    takeDamage() {
-      this.hitpoints -= 10;
-      this.log();
-      return this; // Required for chaining
-    },
-    heal() {
-      this.hitpoints += 10;
-      this.log();
-      return this; // Required for chaining
-    },
-  }
-  
-  game.takeDamage().takeDamage().takeDamage().heal();
-  
-  👾 90
-  👾 80
-  👾 70
-  👾 80
-
-
-  //constructors
-  function Boat(name) {
-    this.name = name;
-    this.created = Date.now()
-  
-    this.horn = function () {
-      console.log(this.name)
-    }
-  }
-
-  const sally = new Boat('Sally');
-const molly = new Boat('Molly');
-
-sally.horn() // Sally
-  
+console.timeEnd()
