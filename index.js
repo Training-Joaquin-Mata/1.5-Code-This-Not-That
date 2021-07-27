@@ -403,106 +403,107 @@ export {
 }
 */
 
-//Graph Representation as Adjacency List
+// //Graph Representation as Adjacency List
 
 
-// DATA
-const airports = 'PHX BKK OKC JFK LAX MEX EZE HEL LOS LAP LIM'.split(' ');
+// // DATA
+// const airports = 'PHX BKK OKC JFK LAX MEX EZE HEL LOS LAP LIM'.split(' ');
 
-const routes = [
-    ['PHX', 'LAX'],
-    ['PHX', 'JFK'],
-    ['JFK', 'OKC'],
-    ['JFK', 'HEL'],
-    ['JFK', 'LOS'],
-    ['MEX', 'LAX'],
-    ['MEX', 'BKK'],
-    ['MEX', 'LIM'],
-    ['MEX', 'EZE'],
-    ['LIM', 'BKK'],
-];
-
-
-// The graph
-const adjacencyList = new Map();
-
-// Add node
-function addNode(airport) {
-    adjacencyList.set(airport, []);
-}
-
-// Add edge, undirected
-function addEdge(origin, destination) {
-    adjacencyList.get(origin).push(destination);
-    adjacencyList.get(destination).push(origin);
-}
-
-// Create the Graph
-airports.forEach(addNode);
-routes.forEach(route => addEdge(...route))
-
-//Function Breadth-first search
-
-function bfs(start) {
-
-    const visited = new Set();
-
-    const queue = [start]
+// const routes = [
+//     ['PHX', 'LAX'],
+//     ['PHX', 'JFK'],
+//     ['JFK', 'OKC'],
+//     ['JFK', 'HEL'],
+//     ['JFK', 'LOS'],
+//     ['MEX', 'LAX'],
+//     ['MEX', 'BKK'],
+//     ['MEX', 'LIM'],
+//     ['MEX', 'EZE'],
+//     ['LIM', 'BKK'],
+// ];
 
 
-    while (queue.length > 0) {
+// // The graph
+// const adjacencyList = new Map();
 
-        const airport = queue.shift(); // mutates the queue
+// // Add node
+// function addNode(airport) {
+//     adjacencyList.set(airport, []);
+// }
 
-        const destinations = adjacencyList.get(airport);
+// // Add edge, undirected
+// function addEdge(origin, destination) {
+//     adjacencyList.get(origin).push(destination);
+//     adjacencyList.get(destination).push(origin);
+// }
+
+// // Create the Graph
+// airports.forEach(addNode);
+// routes.forEach(route => addEdge(...route))
+
+// //Function Breadth-first search
+
+// function bfs(start) {
+
+//     const visited = new Set();
+
+//     const queue = [start]
 
 
-        for (const destination of destinations) {
-;
+//     while (queue.length > 0) {
 
-            if (destination === 'BKK')  {
-                console.log(`BFS found Bangkok!`)
-            }
+//         const airport = queue.shift(); // mutates the queue
 
-            if (!visited.has(destination)) {
-                visited.add(destination);
-                queue.push(destination);
-            }
+//         const destinations = adjacencyList.get(airport);
+
+
+//         for (const destination of destinations) {
+// ;
+
+//             if (destination === 'BKK')  {
+//                 console.log(`BFS found Bangkok!`)
+//             }
+
+//             if (!visited.has(destination)) {
+//                 visited.add(destination);
+//                 queue.push(destination);
+//             }
            
-        }
+//         }
 
         
-    }
+//     }
 
-}
+// }
 
-bfs('PHX')
+// bfs('PHX')
 
 
-// Depth-first search
+// // Depth-first search
 
-function dfs(start, visited = new Set()) {
+// function dfs(start, visited = new Set()) {
 
-    console.log(start)
+//     console.log(start)
     
-    visited.add(start);
+//     visited.add(start);
 
-    const destinations = adjacencyList.get(start);
+//     const destinations = adjacencyList.get(start);
 
-    for (const destination of destinations) {
+//     for (const destination of destinations) {
 
-        if (destination === 'BKK') { 
-            console.log(`DFS found Bangkok`)
-            return;
-        }
+//         if (destination === 'BKK') { 
+//             console.log(`DFS found Bangkok`)
+//             return;
+//         }
         
-        if (!visited.has(destination)) {
-            dfs(destination, visited);
-        }
+//         if (!visited.has(destination)) {
+//             dfs(destination, visited);
+//         }
 
-    }
+//     }
 
-}
+// }
 
-dfs('PHX')
+// dfs('PHX')
+
 
